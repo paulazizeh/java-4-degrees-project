@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: wiit-7340-degrees-at-cscc-api
+  description: Specification for the Degrees restaurant at Columbus State menu
+paths:
+  /api/menu/categories:
+    post:
+      summary: Create a new menu category
+      responses:
+        '201':
+          description:
+            The server created the menu category and the new menu category instance is available at the specified location.
+          headers:
+            Location:
+              description:
+                The location of the newly created category
+              schema:
+                type: string
+          content: {}
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/cscc-java-iv/wiit-7340-degrees-at-cscc-api/1.0

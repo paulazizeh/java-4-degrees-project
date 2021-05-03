@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class DegreesRestControllerTest {
 
-    private static final String RESOURCE_URI = "/api/articles";
+    private static final String RESOURCE_URI = "/api/menu/categories";
 
     @Test
     @DisplayName("T01 - Post returns status of CREATED")
@@ -35,7 +35,7 @@ public class DegreesRestControllerTest {
                 mockMvc.perform(post(RESOURCE_URI)).andReturn();
 
         MockHttpServletResponse mockResponse = result.getResponse();
-        assertEquals("http://localhost/api/articles/1",
+        assertEquals("http://localhost/api/menu/categories/1",
                 mockResponse.getHeader("Location"));
     }
 

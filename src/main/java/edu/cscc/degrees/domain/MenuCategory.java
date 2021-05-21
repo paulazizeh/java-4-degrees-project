@@ -1,17 +1,23 @@
 package edu.cscc.degrees.domain;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class MenuCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Size(min = 1, max = 80, message = "Please enter a category name of up to 80 characters")
     private String categoryTitle;
     private String categoryNotes;
+    @NotNull(message = "sortOrder is required")
     private Integer sortOrder;
 
     public MenuCategory(Long id, String categoryTitle, String categoryNotes, Integer sortOrder) {

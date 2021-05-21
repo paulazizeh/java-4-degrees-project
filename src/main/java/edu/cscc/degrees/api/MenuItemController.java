@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -31,7 +32,7 @@ public class MenuItemController {
 
         @PostMapping
         public ResponseEntity<MenuItem> createMenuItem (
-                @RequestBody MenuItem menuItem, UriComponentsBuilder uriComponentsBuilder){
+                @Valid @RequestBody MenuItem menuItem, UriComponentsBuilder uriComponentsBuilder){
             MenuItem savedItem = menuItemCrudRepository.save(menuItem);
             UriComponents uriComponents =
                     uriComponentsBuilder.path("/api/menu/items")
@@ -67,7 +68,7 @@ public class MenuItemController {
 
         @PutMapping("{id}")
         public ResponseEntity<MenuItem> putMenuItemId (
-                @RequestBody MenuItem putMenuItem,
+                @Valid @RequestBody MenuItem putMenuItem,
                 @PathVariable Long id, UriComponentsBuilder uriComponentsBuilder){
             Optional<MenuItem> searchResult = menuItemCrudRepository.findById(id);
             if (!searchResult.isPresent()) {

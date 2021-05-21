@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -24,7 +25,7 @@ private final MenuCategoryRepository menuCategoryRepository;
 
     @PostMapping
     public ResponseEntity<MenuCategory> createMenuEntry(
-            @RequestBody MenuCategory menuCategory, UriComponentsBuilder uriComponentsBuilder) {
+            @Valid @RequestBody MenuCategory menuCategory, UriComponentsBuilder uriComponentsBuilder) {
         MenuCategory savedItem = menuCategoryRepository.save(menuCategory);
         UriComponents uriComponents =
                 uriComponentsBuilder.path("/api/menu/categories/{id}")
@@ -65,7 +66,7 @@ private final MenuCategoryRepository menuCategoryRepository;
 
     @PutMapping("{id}")
     public ResponseEntity<MenuCategory> putMenuEntryId(
-            @RequestBody MenuCategory putMenuCategory,
+            @Valid @RequestBody MenuCategory putMenuCategory,
             @PathVariable Long id, UriComponentsBuilder uriComponentsBuilder) {
         Optional<MenuCategory> searchResult = menuCategoryRepository.findById(id);
         if (!searchResult.isPresent()) {

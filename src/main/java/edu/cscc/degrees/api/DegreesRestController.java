@@ -39,7 +39,7 @@ private final MenuCategoryRepository menuCategoryRepository;
     public ResponseEntity<Iterable<MenuCategory>> returnMenuEntry(
             UriComponentsBuilder uriComponentsBuilder) {
         Iterable<MenuCategory> searchResult = menuCategoryRepository.findAll();
-        return new ResponseEntity<>(searchResult, HttpStatus.FOUND);
+        return new ResponseEntity<>(searchResult, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
